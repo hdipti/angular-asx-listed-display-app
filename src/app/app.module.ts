@@ -6,7 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { CompanyListComponent } from './company-list/company-list.component';
-import { GetCompaniesService } from './service/get-companies.service';
+import { GetCompaniesService } from './service/get-companies/get-companies.service';
+import { ReadCompaniesService } from './service/read-companies/read-companies.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { GetCompaniesService } from './service/get-companies.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [GetCompaniesService],
+  providers: [
+    GetCompaniesService,
+    ReadCompaniesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

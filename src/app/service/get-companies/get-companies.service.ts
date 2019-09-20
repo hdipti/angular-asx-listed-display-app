@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class GetCompaniesService {
 
-	asxUrl = 'https://www.asx.com.au/asx/research/ASXListedCompanies.csv';
+	asxUrl = 'https://cors.io/?http://www.asx.com.au/asx/research/ASXListedCompanies.csv';
 	httpOptions = {
   		headers: new HttpHeaders({
   			//'Access-Control-Allow-Origin': '*',
-  		    'Access-Control-Allow-Origin': 'http://localhost:4200',
+  		    'Access-Control-Allow-Origin': 'http://localhost:4200. http://www.asx.com.au',
   		    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
   			'Accept': 'application/text'
   		}),
@@ -23,10 +23,25 @@ export class GetCompaniesService {
 	getList() {
 
 		this.httpClient.get(this.asxUrl, this.httpOptions)
-		  .subscribe(res => {
-		    console.log(res);
+		  .subscribe(data => {
+		    this.extractData(data),
+            err => this.handleError(err)
 		  });
 
+	}
+
+	extractData(res) {
+	    let csvData = res['_body'] || '';
+	  //  let parsedData = papa.parse(csvData).data;
+
+	   // this.headerRow = parsedData[0];
+
+	   // parsedData.splice(0, 1);
+	   // this.csvData = parsedData;
+    }
+
+	handleError(err) {
+	    console.log('something went wrong: ', err);
 	}
 
 }

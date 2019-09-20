@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GetCompaniesService } from '../service/get-companies.service';
+
+import { GetCompaniesService } from '@asx/service/get-companies/get-companies.service';
+import { ReadCompaniesService } from '@asx/service/read-companies/read-companies.service';
+import { Company } from '@asx/company/Company.ts';
 
 @Component({
   selector: 'app-company-list',
@@ -8,14 +11,19 @@ import { GetCompaniesService } from '../service/get-companies.service';
 })
 export class CompanyListComponent {
 
-	constructor(private getCompaniesService: GetCompaniesService) {}
+	constructor(private getCompaniesService: GetCompaniesService, private readCompaniesService: ReadCompaniesService) {}
+	asxCompanies : Company[] = [];
 
 	ngOnInit(): void {
-    	this.showConfig();
+    	this.getCompanyListfromAsx();
+    	this.getCompanyList();
   	}
 	
-	showConfig() {
+	getCompanyListfromAsx() {
 	  this.getCompaniesService.getList();
-	  
+	}
+
+	getCompanyList() {
+		this.asxCompanies = this.readCompaniesService.getCompanies();
 	}
 }
