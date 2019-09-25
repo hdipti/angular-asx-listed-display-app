@@ -1,43 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetCompaniesService {
 
-	asxUrl = 'https://cors.io/?http://www.asx.com.au/asx/research/ASXListedCompanies.csv';
+	asxUrl = 'https://cors-anywhere.herokuapp.com/http://www.asx.com.au/asx/research/ASXListedCompanies.csv';
 	httpOptions = {
+		responseType: 'text',
   		headers: new HttpHeaders({
-  			//'Access-Control-Allow-Origin': '*',
-  		    'Access-Control-Allow-Origin': 'http://localhost:4200. http://www.asx.com.au',
-  		    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-  			'Accept': 'application/text'
-  		}),
-	};
+  			'Access-Control-Allow-Origin': '*',
+  		    'Access-Control-Allow-Headers': 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept',
+  		    'Access-Control-Allow-Methods': 'GET',
+  		    'Content-Type': 'application/csv'
+  		}) 
+	}; 
+	
 	constructor(private httpClient: HttpClient) { }
 	
 	getList() {
 
+		console.log(this.httpOptions.headers);
 		this.httpClient.get(this.asxUrl, this.httpOptions)
 		  .subscribe(data => {
 		    this.extractData(data),
             err => this.handleError(err)
-		  });
-
+		}); 
 	}
 
 	extractData(res) {
-	    let csvData = res['_body'] || '';
-	  //  let parsedData = papa.parse(csvData).data;
-
-	   // this.headerRow = parsedData[0];
-
-	   // parsedData.splice(0, 1);
-	   // this.csvData = parsedData;
+	    console.log(res);
     }
 
 	handleError(err) {

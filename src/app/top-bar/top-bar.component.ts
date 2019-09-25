@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GetCompaniesService } from '@asx/service/get-companies/get-companies.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private getCompaniesService: GetCompaniesService) { }
 
-  ngOnInit() {
-  }
+ 	ngOnInit() {}
 
+  	getCompanyListfromAsx() {
+	  this.getCompaniesService.getList();
+	}
 }

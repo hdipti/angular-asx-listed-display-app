@@ -28,11 +28,11 @@ export class ReadCompaniesService {
   extractData(data) {
 		  this.companyCSVArray = (<string>data).split(/\r\n|\n/);
 
-       for (let i = 2; i < this.companyCSVArray.length; i++) { 
+       for (let i = 2; i < this.companyCSVArray.length-1; i++) { 
         let curruntCompany = (<string>this.companyCSVArray[i]).split(',');  
         let company: Company = new Company();  
-        company.companyName = curruntCompany[0].replace(/['"]+/g, '').trim();  
-        company.asxCode = curruntCompany[1].replace(/['"]+/g, '').trim();  
+        company.companyName = curruntCompany[0].replace(/['"]+/g, '').trim(); 
+        company.asxCode = curruntCompany[1].replace(/['"]+/g, '').trim(); 
         company.industryGroup = curruntCompany[2].replace(/['"]+/g, '').trim();  
   
         this.companiesArray.push(company);  
