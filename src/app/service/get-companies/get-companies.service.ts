@@ -1,41 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpParams, HttpHeaders } from '@angular/common/http';
+import { AsxdataService } from '@asx/service/http/asxdata.service.ts';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetCompaniesService {
+export class GetCompaniesService extends AsxdataService {
 
-	asxUrl = 'https://cors-anywhere.herokuapp.com/http://www.asx.com.au/asx/research/ASXListedCompanies.csv';
-	httpOptions = {
-		responseType: 'text',
-  		headers: new HttpHeaders({
-  			'Access-Control-Allow-Origin': '*',
-  		    'Access-Control-Allow-Headers': 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept',
-  		    'Access-Control-Allow-Methods': 'GET',
-  		    'Content-Type': 'application/csv'
-  		}) 
-	}; 
+	asxUrl = 'http://www.asx.com.au/asx/research/';
+	fileName = 'ASXListedCompanies.csv';
 	
-	constructor(private httpClient: HttpClient) { }
+   constructor(httpClient: HttpClient) {
+   	 super();
+     this.httpClient = httpClient;
+   }
 	
-	getList() {
+   getList() {
+	   super.getCSVFromASX(this.asxUrl, this.fileName);
+   }
 
-		console.log(this.httpOptions.headers);
-		this.httpClient.get(this.asxUrl, this.httpOptions)
-		  .subscribe(data => {
-		    this.extractData(data),
-            err => this.handleError(err)
-		}); 
-	}
+   saveDataToFile(data, fileName) {
 
-	extractData(res) {
-	    console.log(res);
-    }
-
-	handleError(err) {
-	    console.log('something went wrong: ', err);
-	}
-
+   }
 }

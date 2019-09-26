@@ -6,13 +6,12 @@ import { GetCompaniesService } from '@asx/service/get-companies/get-companies.se
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.css']
 })
-export class TopBarComponent implements OnInit {
+
+export class TopBarComponent {
 
   constructor(private getCompaniesService: GetCompaniesService) { }
 
- 	ngOnInit() {}
-
-  	getCompanyListfromAsx() {
-	  this.getCompaniesService.getList();
-	}
+  getCompanyListfromAsx() {
+  	this.getCompaniesService.getList();
+  }
 }
