@@ -19,7 +19,7 @@ export class GetCompaniesService extends AsxdataService {
 	   super.getCSVFromASX(this.asxUrl, this.fileName);
    }
 
-   saveDataToFile(data, fileName) {
-
+   processData(data) {
+     super.populateCompanies(data);
    }
 }

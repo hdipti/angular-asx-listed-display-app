@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { GetCompaniesService } from '@asx/service/get-companies/get-companies.service';
+import { Component } from '@angular/core';
+import { DownloadFileService } from '@asx/service/download-file/download-file.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -9,9 +9,10 @@ import { GetCompaniesService } from '@asx/service/get-companies/get-companies.se
 
 export class TopBarComponent {
 
-  constructor(private getCompaniesService: GetCompaniesService) { }
+  constructor(private downloadFileService : DownloadFileService) { }
 
-  getCompanyListfromAsx() {
-  	this.getCompaniesService.getList();
-  }
+  downloadCompanyList(){}
+
+
+
 }

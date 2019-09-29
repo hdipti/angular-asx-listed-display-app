@@ -11,6 +11,7 @@ import { ReadCompaniesService } from '@asx/service/read-companies/read-companies
 import { HttpService } from '@asx/service/http/http.service.ts';
 import { AsxdataService } from '@asx/service/http/asxdata.service.ts';
 import { FileioService } from '@asx/service/http/fileio.service.ts';
+import { DownloadFileService } from '@asx/service/download-file/download-file.service';
 
 @NgModule({
   declarations: [

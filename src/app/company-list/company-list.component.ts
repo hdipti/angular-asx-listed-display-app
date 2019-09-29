@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ReadCompaniesService } from '@asx/service/read-companies/read-companies.service';
+import { GetCompaniesService } from '@asx/service/get-companies/get-companies.service';
 import { Company } from '@asx/company/Company.ts';
 
 @Component({
@@ -9,12 +9,18 @@ import { Company } from '@asx/company/Company.ts';
   styleUrls: ['./company-list.component.css']
 })
 
-export class CompanyListComponent {
+export class CompanyListComponent implements OnInit {
 
-	constructor(private readCompaniesService: ReadCompaniesService) {}
-	asxCompanies : Company[] = [];
+  companiesArray : Company[] = [];
 
+	constructor(private getCompaniesService: GetCompaniesService) {}
+	
 	ngOnInit(): void {
-    	this.asxCompanies = this.readCompaniesService.getCompanies();
-  	}
+		this.getCompanyListfromAsx();
+    this.companiesArray = this.getCompaniesService.companiesArray;
+  }
+
+	getCompanyListfromAsx() {
+		return this.getCompaniesService.getList();
+  }
 }

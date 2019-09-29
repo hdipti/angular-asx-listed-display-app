@@ -11,24 +11,24 @@ export abstract class AsxdataService extends HttpService {
   httpOptions = {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept',
-          'Access-Control-Allow-Methods': 'GET',
-          'Content-Type': 'application/csv'
-      })//,
-      //responseType: 'text'
-  }; 
+        'Access-Control-Allow-Headers': 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept',
+        'Access-Control-Allow-Methods': 'GET',
+        'Content-Type': 'application/ms-excel'
+      }),
+      responseType: 'text' as 'text'
+    }; 
 
   constructor() { 
   	super();
   }
 
-  abstract saveDataToFile(data : any, fileName : string): void;
+  abstract processData(data : any);
 
-  getCSVFromASX(url: string, fileName: any){
+  getCSVFromASX(url: string, fileName: any) {
     this.httpClient.get(this.corsUrl + url + fileName, this.httpOptions)
-        .subscribe(data => { 
-          this.saveDataToFile(data, fileName),
-          err => this.handleError(err)
-        });
+    .subscribe(data => { 
+       this.processData(data),
+       err => this.handleError(err)
+     });
   }
 }
