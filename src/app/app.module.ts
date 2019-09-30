@@ -12,6 +12,9 @@ import { HttpService } from '@asx/service/http/http.service.ts';
 import { AsxdataService } from '@asx/service/http/asxdata.service.ts';
 import { FileioService } from '@asx/service/http/fileio.service.ts';
 import { DownloadFileService } from '@asx/service/download-file/download-file.service';
+import { GetSelectedCompaniesService } from '@asx/service/get-companies/get-selected-companies.service.ts';
+import { GetBanksService } from '@asx/service/get-companies/get-banks.service.ts';
+import { GetAutomobilesService } from '@asx/service/get-companies/get-automobiles.service.ts';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { DownloadFileService } from '@asx/service/download-file/download-file.se
   ],
   providers: [
     GetCompaniesService,
+    DownloadFileService,
+    GetBanksService,
+    GetAutomobilesService,
     ReadCompaniesService],
   bootstrap: [AppComponent]
 })

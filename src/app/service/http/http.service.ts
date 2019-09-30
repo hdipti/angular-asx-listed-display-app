@@ -9,6 +9,8 @@ export abstract class HttpService {
 
   httpClient: HttpClient;
   companiesArray : Company[] = [];
+  automobilesArray : Company[] = [];
+  banksArray : Company[] = [];
 
   constructor() { }
 

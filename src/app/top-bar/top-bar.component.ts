@@ -11,7 +11,9 @@ export class TopBarComponent {
 
   constructor(private downloadFileService : DownloadFileService) { }
 
-  downloadCompanyList(){}
+  downloadCompanyList(){
+  	this.downloadFileService.saveDataToFile();
+  }
 
 
 
