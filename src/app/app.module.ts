@@ -15,12 +15,18 @@ import { DownloadFileService } from '@asx/service/download-file/download-file.se
 import { GetSelectedCompaniesService } from '@asx/service/get-companies/get-selected-companies.service.ts';
 import { GetBanksService } from '@asx/service/get-companies/get-banks.service.ts';
 import { GetAutomobilesService } from '@asx/service/get-companies/get-automobiles.service.ts';
+import { AutomobilesComponent } from './automobiles/automobiles.component';
+import { BanksComponent } from './banks/banks.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
-    CompanyListComponent
+    CompanyListComponent,
+    AutomobilesComponent,
+    BanksComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

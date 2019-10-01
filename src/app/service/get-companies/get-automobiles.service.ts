@@ -14,10 +14,13 @@ export class GetAutomobilesService extends GetSelectedCompaniesService {
   }
 
   getAutomobiles() {
-  	super.getSelectedCompanies(this.criteria);   
+    if(!super.automobilesArray){
+      super.getSelectedCompanies(this.criteria);  
+    }
   }
 
   addSelectedCompanies(i : number){
+    console.log(super.companiesArray[i]);
     super.automobilesArray.push(super.companiesArray[i]);  
   }
 

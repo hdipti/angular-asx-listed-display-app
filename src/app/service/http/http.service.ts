@@ -7,10 +7,13 @@ import { Company } from '@asx/company/Company.ts';
 })
 export abstract class HttpService {
 
-  httpClient: HttpClient;
+  asxResponse : string = '';
   companiesArray : Company[] = [];
   automobilesArray : Company[] = [];
   banksArray : Company[] = [];
+
+  httpClient: HttpClient;
+  headerValue = "Company";
 
   constructor() { }
 
@@ -19,13 +22,31 @@ export abstract class HttpService {
   }
 
   populateCompanies(data) {
+    this.asxResponse = data;
     let companyCSVArray = (<string>data).split(/\r\n|\n/);
-      for (let i = 2; i < companyCSVArray.length-1; i++) { 
-        this.addtoCompanyArray((<string>companyCSVArray[i]).split(','));
+      for (let i = 0; i < companyCSVArray.length-1; i++) {
+        if(this.isHeader(companyCSVArray, i)) {
+          console.log('i inside if : '  + i);
+          this.populateAsxCompanies(companyCSVArray, i+1);
+          break;
+        }
+        console.log('i end of for : ' + i);
       } 
-   this.companiesArray;
   }
 
+  isHeader(companyCSVArray : string[], i : number) : boolean {
+    if(companyCSVArray[i].includes(this.headerValue)){
+      return true;
+    }
+    return false;
+  }
+
+  populateAsxCompanies(companyCSVArray : string[], i : number){
+    for (let j = i; j < companyCSVArray.length-1; j++) {
+      this.addtoCompanyArray((<string>companyCSVArray[j]).split(','));
+    }
+  }
+  
   addtoCompanyArray(curruntCompany : string[]){
     let company: Company = new Company();  
     company.companyName = curruntCompany[0].replace(/['"]+/g, '').trim(); 

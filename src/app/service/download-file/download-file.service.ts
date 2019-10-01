@@ -16,6 +16,6 @@ export class DownloadFileService extends HttpService {
     }
 
     saveDataToFile() {
-     saveAs(super.companiesArray, this.fileName);
+     saveAs(super.asxResponse, this.fileName);
     }
 }

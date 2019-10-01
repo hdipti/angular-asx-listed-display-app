@@ -15,6 +15,4 @@ export class TopBarComponent {
   	this.downloadFileService.saveDataToFile();
   }
 
-
-
-}
+ }

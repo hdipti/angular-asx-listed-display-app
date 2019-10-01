@@ -7,7 +7,7 @@ import { HttpService } from '@asx/service/http/http.service.ts';
 })
 export abstract class AsxdataService extends HttpService {
 
- corsUrl = 'https://cors-anywhere.herokuapp.com/';
+  corsUrl = 'https://cors-anywhere.herokuapp.com/';
   httpOptions = {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',
@@ -25,10 +25,14 @@ export abstract class AsxdataService extends HttpService {
   abstract processData(data : any);
 
   getCSVFromASX(url: string, fileName: any) {
-    this.httpClient.get(this.corsUrl + url + fileName, this.httpOptions)
-    .subscribe(data => { 
+    if(!super.asxResponse){
+      this.httpClient.get(this.corsUrl + url + fileName, this.httpOptions)
+      .subscribe(data => { 
        this.processData(data),
        err => this.handleError(err)
-     });
+      });
+    } else {
+      this.processData(super.asxResponse);
+    }
   }
 }

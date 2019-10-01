@@ -1,0 +1,17 @@
+<table>
+    <thead>
+        <tr class="table-dark">
+            <td> Company Name </td>
+            <td> ASX Code </td>
+            <td> GICS Industry Code </td>
+        </tr>
+    </thead>
+    <tbody class="table-light">
+        <div ng-show="!automobilesArray.length">No Data Found</div>
+        <tr *ngFor="let automobile of automobilesArray">
+            <td> {{automobile.companyName}} </td>
+            <td> {{automobile.asxCode}} </td>
+            <td> {{automobile.industryGroup}} </td>
+        </tr>
+    </tbody>
+</table>

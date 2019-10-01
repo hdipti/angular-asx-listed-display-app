@@ -14,11 +14,12 @@ export class GetBanksService extends GetSelectedCompaniesService {
    }
 
   getBanks() {
-  	super.getSelectedCompanies(this.criteria);
+    if(!super.banksArray){
+      super.getSelectedCompanies(this.criteria);
+    }
   }
 
   addSelectedCompanies(i : number) {
     super.banksArray.push(super.companiesArray[i]);  
   }
-
 }
