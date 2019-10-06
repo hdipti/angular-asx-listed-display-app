@@ -1,6 +1,9 @@
 # AngularAsxListedDisplayApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
+This is a project in Angular 8 to display the ASX Listed Companies.
+Basic features of angular like routing, services and simple table display are used.
+The company list is fetched from ASX on loading the page.
 
 ## Development server
 
